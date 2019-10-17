@@ -3,12 +3,14 @@ package com.example.excelProj.Controller;
 import com.example.excelProj.Dto.UserDataDTO;
 import com.example.excelProj.Model.UserData;
 import com.example.excelProj.Service.UserDataService;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/data")
 public class UserDataController {
     @Autowired
@@ -21,14 +23,26 @@ public class UserDataController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public String deleteUser(@PathVariable Long id)
+    public List<UserData> deleteUser(@PathVariable Long id)
     {
         return dataService.deleteUser(id);
     }
+
     @GetMapping(value ="/")
     public List<UserData> getUsersData()
     {
         return dataService.getUsers();
 
+    }
+    @PutMapping( value = "/{id}")
+    public String updateUser(@PathVariable Long id , @RequestBody UserDataDTO userDataDTO)
+    {
+        return this.dataService.updateUser(id , userDataDTO);
+    }
+
+    @GetMapping( value = "/{id}")
+    public UserData getUserById(@PathVariable Long id)
+    {
+        return this.dataService.getUserById(id);
     }
 }

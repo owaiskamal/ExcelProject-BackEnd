@@ -15,7 +15,7 @@ public class UserDataDTO {
     private String status1;
     private String status2;
     private String status3;
-    private Date dateOffc;
+    private String dateOffc;
     private String firstPointOfContact;
     private String details;
     private String oEmbassyGardens;
@@ -34,7 +34,7 @@ public class UserDataDTO {
     private String tKaiVillas;
     private String tAddyVillas;
 
-    public UserDataDTO(Long id, String email1, String email2, String phone1, String phone2, String company, String nationality, String countryOfResidence, String status1, String status2, String status3, Date dateOffc, String firstPointOfContact, String details, String oEmbassyGardens, String oTheGallery, String oCliftonPalace, String oCliftonCourt, String oKaiVIllas, String oAddyVillas, Long total, String tEmbassyGardens, String tTheGallery, String tCLiftonPalace, String tCliftonCourt, String tKaiVillas, String tAddyVillas) {
+    public UserDataDTO(Long id, String email1, String email2, String phone1, String phone2, String company, String nationality, String countryOfResidence, String status1, String status2, String status3, String  dateOffc, String firstPointOfContact, String details, String oEmbassyGardens, String oTheGallery, String oCliftonPalace, String oCliftonCourt, String oKaiVIllas, String oAddyVillas, Long total, String tEmbassyGardens, String tTheGallery, String tCLiftonPalace, String tCliftonCourt, String tKaiVillas, String tAddyVillas) {
         this.id = id;
         this.email1 = email1;
         this.email2 = email2;
@@ -155,13 +155,6 @@ public class UserDataDTO {
         this.status3 = status3;
     }
 
-    public Date getDateOffc() {
-        return dateOffc;
-    }
-
-    public void setDateOffc(Date dateOffc) {
-        this.dateOffc = dateOffc;
-    }
 
     public String getFirstPointOfContact() {
         return firstPointOfContact;
@@ -305,5 +298,13 @@ public class UserDataDTO {
 
     public void setoTheResidence(String oTheResidence) {
         this.oTheResidence = oTheResidence;
+    }
+
+    public String getDateOffc() {
+        return dateOffc;
+    }
+
+    public void setDateOffc(String dateOffc) {
+        this.dateOffc = dateOffc;
     }
 }
