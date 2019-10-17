@@ -1,48 +1,8 @@
-package com.example.excelProj.Model;
+package com.example.excelProj.Dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Date;
 
-@Entity
-@Table(name = "UserData")
-public class UserData {
-
-
-    public UserData(Long id, String email1, String email2, String phone1, String phone2, String company, String nationality, String countryOfResidence, String status1, String status2, String status3, Date dateOffc, String firstPointOfContact, String details, String oEmbassyGardens, String oTheGallery, String oCliftonPalace, String oCliftonCourt, String oKaiVIllas, String oAddyVillas, Long total, String tEmbassyGardens, String tTheGallery, String tCLiftonPalace, String tCliftonCourt, String tKaiVillas, String tAddyVillas) {
-        this.id = id;
-        this.email1 = email1;
-        this.email2 = email2;
-        this.phone1 = phone1;
-        this.phone2 = phone2;
-        this.company = company;
-        this.nationality = nationality;
-        this.countryOfResidence = countryOfResidence;
-        this.status1 = status1;
-        this.status2 = status2;
-        this.status3 = status3;
-        this.dateOffc = dateOffc;
-        this.firstPointOfContact = firstPointOfContact;
-        this.details = details;
-        this.oEmbassyGardens = oEmbassyGardens;
-        this.oTheGallery = oTheGallery;
-        this.oCliftonPalace = oCliftonPalace;
-        this.oCliftonCourt = oCliftonCourt;
-        this.oKaiVIllas = oKaiVIllas;
-        this.oAddyVillas = oAddyVillas;
-        Total = total;
-        this.tEmbassyGardens = tEmbassyGardens;
-        this.tTheGallery = tTheGallery;
-        this.tCLiftonPalace = tCLiftonPalace;
-        this.tCliftonCourt = tCliftonCourt;
-        this.tKaiVillas = tKaiVillas;
-        this.tAddyVillas = tAddyVillas;
-    }
-
-    @Id
-    @GeneratedValue
+public class UserDataDTO {
     private Long id;
     private String name;
     private String  email1;
@@ -74,7 +34,37 @@ public class UserData {
     private String tKaiVillas;
     private String tAddyVillas;
 
-    public UserData() {
+    public UserDataDTO(Long id, String email1, String email2, String phone1, String phone2, String company, String nationality, String countryOfResidence, String status1, String status2, String status3, Date dateOffc, String firstPointOfContact, String details, String oEmbassyGardens, String oTheGallery, String oCliftonPalace, String oCliftonCourt, String oKaiVIllas, String oAddyVillas, Long total, String tEmbassyGardens, String tTheGallery, String tCLiftonPalace, String tCliftonCourt, String tKaiVillas, String tAddyVillas) {
+        this.id = id;
+        this.email1 = email1;
+        this.email2 = email2;
+        this.phone1 = phone1;
+        this.phone2 = phone2;
+        this.company = company;
+        this.nationality = nationality;
+        this.countryOfResidence = countryOfResidence;
+        this.status1 = status1;
+        this.status2 = status2;
+        this.status3 = status3;
+        this.dateOffc = dateOffc;
+        this.firstPointOfContact = firstPointOfContact;
+        this.details = details;
+        this.oEmbassyGardens = oEmbassyGardens;
+        this.oTheGallery = oTheGallery;
+        this.oCliftonPalace = oCliftonPalace;
+        this.oCliftonCourt = oCliftonCourt;
+        this.oKaiVIllas = oKaiVIllas;
+        this.oAddyVillas = oAddyVillas;
+        Total = total;
+        this.tEmbassyGardens = tEmbassyGardens;
+        this.tTheGallery = tTheGallery;
+        this.tCLiftonPalace = tCLiftonPalace;
+        this.tCliftonCourt = tCliftonCourt;
+        this.tKaiVillas = tKaiVillas;
+        this.tAddyVillas = tAddyVillas;
+    }
+
+    public UserDataDTO() {
     }
 
     public Long getId() {
@@ -301,19 +291,19 @@ public class UserData {
         this.name = name;
     }
 
-    public String getoTheResidence() {
-        return oTheResidence;
-    }
-
-    public void setoTheResidence(String oTheResidence) {
-        this.oTheResidence = oTheResidence;
-    }
-
     public String gettTheResidence() {
         return tTheResidence;
     }
 
     public void settTheResidence(String tTheResidence) {
         this.tTheResidence = tTheResidence;
+    }
+
+    public String getoTheResidence() {
+        return oTheResidence;
+    }
+
+    public void setoTheResidence(String oTheResidence) {
+        this.oTheResidence = oTheResidence;
     }
 }
