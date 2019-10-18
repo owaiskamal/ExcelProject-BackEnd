@@ -41,7 +41,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         System.out.println(req.getRequestURL().toString());
 //        if(req.getRequestURL().toString().contains("swagger") || req.getRequestURL().toString().contains("favicon")) {
 //        	return;
-//        }
+//
         String username = null;
         String authToken = null;
         if (header != null) {
