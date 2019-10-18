@@ -51,4 +51,15 @@ public class AuthenticationController {
     public List<User> getAllUsers(){
         return this.userService.findAll();
     }
+
+    @PutMapping("/update/{id}")
+    public ApiResponse<User> updateUser(@PathVariable("id") Long id,@RequestBody UserDto user){
+
+        return new ApiResponse<>(HttpStatus.OK.value(),"User updated successfully",userService.update(user,id));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public  ApiResponse<User> getActiveUsers(@PathVariable("id") Long id){
+        return userService.delete(id);
+    }
 }
