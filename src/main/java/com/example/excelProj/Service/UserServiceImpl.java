@@ -48,8 +48,9 @@ public class UserServiceImpl implements UserDetailsService {
 		return list;
 	}
 
-	public void delete(Long id) {
+	public ApiResponse<User> delete(Long id) {
 		userDao.deleteById(id);
+		return new ApiResponse<>(HttpStatus.OK.value(), "User Deleted successfully.",null);
 	}
 
 	public User findOne(String username) {
@@ -84,6 +85,22 @@ public class UserServiceImpl implements UserDetailsService {
 		}else{
 			return new ApiResponse<>(HttpStatus.NOT_FOUND.value(), "User Already exsist.",null);//return ;
 		}
-
     }
+
+
+	public List<User> getActiveUsers(Long id){
+		Optional<User> user = userDao.findById(id);
+		if(user.isPresent()){
+			User user1 = user.get();
+			user1.setActive(false);
+			userDao.save(user1);
+
+			List<User> activeUsers = userDao.findByActive();
+			return activeUsers;
+ 		}
+
+		return null;
+	}
+
+
 }
