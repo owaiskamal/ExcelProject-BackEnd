@@ -9,6 +9,7 @@ import com.example.excelProj.Model.User;
 import com.example.excelProj.Service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
@@ -34,10 +35,15 @@ public class AuthenticationController {
     public ApiResponse<AuthToken> register(@RequestBody LoginUser loginUser) throws AuthenticationException {
 
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUser.getUsername(), loginUser.getPassword()));
-        final User user = userService.findOne(loginUser.getUsername());
-        final String token = jwtTokenUtil.generateToken(user);
 
-        return new ApiResponse<>(200, "success",new AuthToken(token,user.getName(),user.getUserType(),user.getEmail()));
+        final User user = userService.findOne(loginUser.getUsername());
+        if(user!=null){
+            final String token = jwtTokenUtil.generateToken(user);
+
+            return new ApiResponse<>(200, "success",new AuthToken(token,user.getName(),user.getUserType(),user.getEmail()));
+        }
+
+      return new ApiResponse<>(404, "RECORD NOT FOUND",new AuthToken("","","",""));
     }
 
 
@@ -58,8 +64,14 @@ public class AuthenticationController {
         return new ApiResponse<>(HttpStatus.OK.value(),"User updated successfully",userService.update(user,id));
     }
 
+//    @DeleteMapping("/delete/{id}")
+//    public  ApiResponse<User> getActiveUsers(@PathVariable("id") Long id){
+//        return userService.delete(id);
+//    }
+
     @DeleteMapping("/delete/{id}")
-    public  ApiResponse<User> getActiveUsers(@PathVariable("id") Long id){
-        return userService.delete(id);
+    public List<User> deleteUserById(@PathVariable Long id){
+        return this.userService.getActiveUsers(id);
+
     }
 }
