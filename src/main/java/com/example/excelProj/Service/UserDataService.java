@@ -52,7 +52,7 @@ public class UserDataService {
         return "{\"Added successfully\":1}";
 
     }
-    public List<UserData>  deleteUser(Long id)
+    public List<UserData> deleteUser(Long id)
     {
         Optional<UserData> userData = this.userDataRepository.findById(id);
         if(userData.isPresent()){
