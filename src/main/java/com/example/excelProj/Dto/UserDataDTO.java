@@ -18,24 +18,29 @@ public class UserDataDTO {
     private String dateOffc;
     private String firstPointOfContact;
     private String details;
-    private String oEmbassyGardens;
-    private String oTheGallery;
-    private String oTheResidence;
-    private String oCliftonPalace;
-    private String oCliftonCourt;
-    private String oKaiVIllas;
-    private String oAddyVillas;
+    private boolean oEmbassyGardens;
+    private boolean oTheGallery;
+    private boolean oTheResidence;
+    private boolean oCliftonPalace;
+    private boolean oCliftonCourt;
+    private boolean oKaiVIllas;
+    private boolean oAddyVillas;
     private Long Total;
-    private String tEmbassyGardens;
-    private String tTheGallery;
-    private String tTheResidence;
-    private String tCLiftonPalace;
-    private String tCliftonCourt;
-    private String tKaiVillas;
-    private String tAddyVillas;
+    private boolean tEmbassyGardens;
+    private boolean tTheGallery;
+    private boolean tTheResidence;
+    private boolean tCLiftonPalace;
+    private boolean tCliftonCourt;
+    private boolean tKaiVillas;
+    private boolean tAddyVillas;
 
-    public UserDataDTO(Long id, String email1, String email2, String phone1, String phone2, String company, String nationality, String countryOfResidence, String status1, String status2, String status3, String  dateOffc, String firstPointOfContact, String details, String oEmbassyGardens, String oTheGallery, String oCliftonPalace, String oCliftonCourt, String oKaiVIllas, String oAddyVillas, Long total, String tEmbassyGardens, String tTheGallery, String tCLiftonPalace, String tCliftonCourt, String tKaiVillas, String tAddyVillas) {
+
+    public UserDataDTO() {
+    }
+
+    public UserDataDTO(Long id, String name, String email1, String email2, String phone1, String phone2, String company, String nationality, String countryOfResidence, String status1, String status2, String status3, String dateOffc, String firstPointOfContact, String details, boolean oEmbassyGardens, boolean oTheGallery, boolean oTheResidence, boolean oCliftonPalace, boolean oCliftonCourt, boolean oKaiVIllas, boolean oAddyVillas, Long total, boolean tEmbassyGardens, boolean tTheGallery, boolean tTheResidence, boolean tCLiftonPalace, boolean tCliftonCourt, boolean tKaiVillas, boolean tAddyVillas) {
         this.id = id;
+        this.name = name;
         this.email1 = email1;
         this.email2 = email2;
         this.phone1 = phone1;
@@ -51,6 +56,7 @@ public class UserDataDTO {
         this.details = details;
         this.oEmbassyGardens = oEmbassyGardens;
         this.oTheGallery = oTheGallery;
+        this.oTheResidence = oTheResidence;
         this.oCliftonPalace = oCliftonPalace;
         this.oCliftonCourt = oCliftonCourt;
         this.oKaiVIllas = oKaiVIllas;
@@ -58,13 +64,11 @@ public class UserDataDTO {
         Total = total;
         this.tEmbassyGardens = tEmbassyGardens;
         this.tTheGallery = tTheGallery;
+        this.tTheResidence = tTheResidence;
         this.tCLiftonPalace = tCLiftonPalace;
         this.tCliftonCourt = tCliftonCourt;
         this.tKaiVillas = tKaiVillas;
         this.tAddyVillas = tAddyVillas;
-    }
-
-    public UserDataDTO() {
     }
 
     public Long getId() {
@@ -73,6 +77,14 @@ public class UserDataDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail1() {
@@ -155,6 +167,13 @@ public class UserDataDTO {
         this.status3 = status3;
     }
 
+    public String getDateOffc() {
+        return dateOffc;
+    }
+
+    public void setDateOffc(String dateOffc) {
+        this.dateOffc = dateOffc;
+    }
 
     public String getFirstPointOfContact() {
         return firstPointOfContact;
@@ -172,51 +191,59 @@ public class UserDataDTO {
         this.details = details;
     }
 
-    public String getoEmbassyGardens() {
+    public boolean isoEmbassyGardens() {
         return oEmbassyGardens;
     }
 
-    public void setoEmbassyGardens(String oEmbassyGardens) {
+    public void setoEmbassyGardens(boolean oEmbassyGardens) {
         this.oEmbassyGardens = oEmbassyGardens;
     }
 
-    public String getoTheGallery() {
+    public boolean isoTheGallery() {
         return oTheGallery;
     }
 
-    public void setoTheGallery(String oTheGallery) {
+    public void setoTheGallery(boolean oTheGallery) {
         this.oTheGallery = oTheGallery;
     }
 
-    public String getoCliftonPalace() {
+    public boolean isoTheResidence() {
+        return oTheResidence;
+    }
+
+    public void setoTheResidence(boolean oTheResidence) {
+        this.oTheResidence = oTheResidence;
+    }
+
+    public boolean isoCliftonPalace() {
         return oCliftonPalace;
     }
 
-    public void setoCliftonPalace(String oCliftonPalace) {
+    public void setoCliftonPalace(boolean oCliftonPalace) {
         this.oCliftonPalace = oCliftonPalace;
     }
 
-    public String getoCliftonCourt() {
+    public boolean isoCliftonCourt() {
         return oCliftonCourt;
     }
 
-    public void setoCliftonCourt(String oCliftonCourt) {
+    public void setoCliftonCourt(boolean oCliftonCourt) {
         this.oCliftonCourt = oCliftonCourt;
     }
 
-    public String getoKaiVIllas() {
+    public boolean isoKaiVIllas() {
         return oKaiVIllas;
     }
 
-    public void setoKaiVIllas(String oKaiVIllas) {
+    public void setoKaiVIllas(boolean oKaiVIllas) {
         this.oKaiVIllas = oKaiVIllas;
     }
 
-    public String getoAddyVillas() {
+    public boolean isoAddyVillas() {
         return oAddyVillas;
     }
 
-    public void setoAddyVillas(String oAddyVillas) {
+    public void setoAddyVillas(boolean oAddyVillas) {
         this.oAddyVillas = oAddyVillas;
     }
 
@@ -228,83 +255,59 @@ public class UserDataDTO {
         Total = total;
     }
 
-    public String gettEmbassyGardens() {
+    public boolean istEmbassyGardens() {
         return tEmbassyGardens;
     }
 
-    public void settEmbassyGardens(String tEmbassyGardens) {
+    public void settEmbassyGardens(boolean tEmbassyGardens) {
         this.tEmbassyGardens = tEmbassyGardens;
     }
 
-    public String gettTheGallery() {
+    public boolean istTheGallery() {
         return tTheGallery;
     }
 
-    public void settTheGallery(String tTheGallery) {
+    public void settTheGallery(boolean tTheGallery) {
         this.tTheGallery = tTheGallery;
     }
 
-    public String gettCLiftonPalace() {
-        return tCLiftonPalace;
-    }
-
-    public void settCLiftonPalace(String tCLiftonPalace) {
-        this.tCLiftonPalace = tCLiftonPalace;
-    }
-
-    public String gettCliftonCourt() {
-        return tCliftonCourt;
-    }
-
-    public void settCliftonCourt(String tCliftonCourt) {
-        this.tCliftonCourt = tCliftonCourt;
-    }
-
-    public String gettKaiVillas() {
-        return tKaiVillas;
-    }
-
-    public void settKaiVillas(String tKaiVillas) {
-        this.tKaiVillas = tKaiVillas;
-    }
-
-    public String gettAddyVillas() {
-        return tAddyVillas;
-    }
-
-    public void settAddyVillas(String tAddyVillas) {
-        this.tAddyVillas = tAddyVillas;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String gettTheResidence() {
+    public boolean istTheResidence() {
         return tTheResidence;
     }
 
-    public void settTheResidence(String tTheResidence) {
+    public void settTheResidence(boolean tTheResidence) {
         this.tTheResidence = tTheResidence;
     }
 
-    public String getoTheResidence() {
-        return oTheResidence;
+    public boolean istCLiftonPalace() {
+        return tCLiftonPalace;
     }
 
-    public void setoTheResidence(String oTheResidence) {
-        this.oTheResidence = oTheResidence;
+    public void settCLiftonPalace(boolean tCLiftonPalace) {
+        this.tCLiftonPalace = tCLiftonPalace;
     }
 
-    public String getDateOffc() {
-        return dateOffc;
+    public boolean istCliftonCourt() {
+        return tCliftonCourt;
     }
 
-    public void setDateOffc(String dateOffc) {
-        this.dateOffc = dateOffc;
+    public void settCliftonCourt(boolean tCliftonCourt) {
+        this.tCliftonCourt = tCliftonCourt;
+    }
+
+    public boolean istKaiVillas() {
+        return tKaiVillas;
+    }
+
+    public void settKaiVillas(boolean tKaiVillas) {
+        this.tKaiVillas = tKaiVillas;
+    }
+
+    public boolean istAddyVillas() {
+        return tAddyVillas;
+    }
+
+    public void settAddyVillas(boolean tAddyVillas) {
+        this.tAddyVillas = tAddyVillas;
     }
 }
