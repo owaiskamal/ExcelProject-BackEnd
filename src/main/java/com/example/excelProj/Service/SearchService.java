@@ -22,13 +22,13 @@ public class SearchService {
         List<UserData> resultList = new ArrayList<>();
         resultList.addAll(userData);
 
-        if(!searchDTO.getName().isEmpty()){
+        if(!StringUtils.isEmpty(searchDTO.getName())){
             resultList = resultList.stream()
                     .filter(p->p.getName().equalsIgnoreCase(searchDTO.getName()))
                     .collect(Collectors.toList());
         }
 
-        if(!searchDTO.getEmail().isEmpty()){
+        if(!StringUtils.isEmpty(searchDTO.getEmail())){
             resultList = resultList.stream()
                     .filter(p->(p.checkAllEmail(searchDTO.getEmail()))                                )
                     .collect(Collectors.toList());
@@ -39,14 +39,14 @@ public class SearchService {
                     .filter(data->data.checkAllStatus(searchDTO.getStatus()))
                     .collect(Collectors.toList());
         }
-        if (!searchDTO.getPhoneNumber().isEmpty()){
+        if (!StringUtils.isEmpty(searchDTO.getPhoneNumber())){
             resultList=resultList.stream()
                     .filter(data->data.checkAllPhoneNumber(searchDTO.getPhoneNumber()))
                     .collect(Collectors.toList());
 
 
         }
-        if(!searchDTO.getDate().isEmpty()){
+        if(!StringUtils.isEmpty(searchDTO.getDate())){
           resultList=resultList.stream()
                     .filter(data->data.getDateOffc().equalsIgnoreCase(searchDTO.getDate()))
                     .collect(Collectors.toList());
