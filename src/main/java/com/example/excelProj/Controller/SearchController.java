@@ -19,6 +19,6 @@ public class SearchController {
     @PostMapping("/data")
     public List<UserData> searchData(@RequestBody SearchDTO searchDTO){
 
-    return null;
+    return this.searchService.searchAllData(searchDTO);
     }
 }

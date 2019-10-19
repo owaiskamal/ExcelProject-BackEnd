@@ -328,4 +328,30 @@ public class UserData {
     public void setDateOffc(String dateOffc) {
         this.dateOffc = dateOffc;
     }
+
+
+    public boolean checkAllEmail(String email){
+        if(email.equalsIgnoreCase(this.email1) || email.equalsIgnoreCase(this.email2)){
+            return true;
+        }
+        return false;
+
+    }
+    public boolean checkAllStatus(String status){
+        if(status.equalsIgnoreCase(this.status1)||status.equalsIgnoreCase(this.status2)||status.equalsIgnoreCase(this.status3))
+        {
+            return true;
+
+        }
+        return false;
+
+        }
+
+        public boolean checkAllPhoneNumber(String phoneNo){
+        if(phoneNo.equalsIgnoreCase(this.phone1)||phoneNo.equalsIgnoreCase(this.phone1)){return true;}
+        return false;
+
+        }
+
+
 }
