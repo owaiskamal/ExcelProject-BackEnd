@@ -8,6 +8,7 @@ import com.example.excelProj.Repository.UserDao;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.xml.ws.Response;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -44,22 +46,29 @@ public class UserServiceImpl implements UserDetailsService {
 
 	public List<User> findAll() {
 		List<User> list = new ArrayList<>();
-		userDao.findAll().iterator().forEachRemaining(list::add);
+		userDao.findByActive().iterator().forEachRemaining(list::add);
 		return list;
 	}
 
-	public ApiResponse<User> delete(Long id) {
-		userDao.deleteById(id);
-		return new ApiResponse<>(HttpStatus.OK.value(), "User Deleted successfully.",null);
+	public ApiResponse<List<User>> delete(Long id) {
+		Optional<User> userOptional = userDao.findById(id);
+		if(userOptional.isPresent()){
+			userDao.deleteById(id);
+		}
+		return new ApiResponse<>(HttpStatus.OK.value(), "User saved successfully.",	userDao.findAll());
 	}
 
 	public User findOne(String username) {
-		return userDao.findByEmail(username);
+
+		 User user = userDao.findByEmailAndActive(username,Boolean.TRUE);
+		 return user;
+
 	}
 
 	public User findById(Long id) {
 		Optional<User> optionalUser = userDao.findById(id);
-		return optionalUser.isPresent() ? optionalUser.get() : null;
+
+		return optionalUser.isPresent() ?  optionalUser.get() : null;
 	}
 
     public UserDto update(UserDto userDto, Long id) {
