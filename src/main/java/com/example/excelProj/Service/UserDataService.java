@@ -1,7 +1,6 @@
 package com.example.excelProj.Service;
 
 import com.example.excelProj.Dto.UserDataDTO;
-import com.example.excelProj.Model.User;
 import com.example.excelProj.Model.UserData;
 import com.example.excelProj.Repository.UserDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +21,8 @@ public class UserDataService {
         userData.setName(userDataDTO.getName());
         userData.setEmail1(userDataDTO.getEmail1());
         userData.setEmail2(userDataDTO.getEmail2());
-        userData.setPhone1(userDataDTO.getPhone1());
-        userData.setPhone2(userDataDTO.getPhone2());
+        userData.setPhoneNo1(userDataDTO.getPhoneNo1());
+        userData.setPhoneNo2(userDataDTO.getPhoneNo2());
         userData.setCompany(userDataDTO.getCompany());
         userData.setNationality(userDataDTO.getNationality());
         userData.setCountryOfResidence(userDataDTO.getCountryOfResidence());
@@ -37,8 +36,8 @@ public class UserDataService {
         userData.setoTheGallery(userDataDTO.isoTheGallery());
         userData.setoTheResidence(userDataDTO.isoTheResidence());
         userData.setoCliftonCourt(userDataDTO.isoCliftonCourt());
-        userData.setoCliftonPalace(userDataDTO.isoCliftonPalace());
-        userData.setoKaiVIllas(userDataDTO.isoKaiVIllas());
+        userData.setoCliftonPlace(userDataDTO.isoCliftonPlace());
+        userData.setoKaiVillas(userDataDTO.isoKaiVillas());
         userData.setoAddyVillas(userDataDTO.isoAddyVillas());
         userData.setTotal(userDataDTO.getTotal());
         userData.settEmbassyGardens(userDataDTO.istEmbassyGardens());
@@ -60,7 +59,7 @@ public class UserDataService {
                 data.setActivityStatus("InActive");
                 userDataRepository.save(data);
         }
-        return this.getUsers();
+        return this.getUsersData();
 
     }
 
@@ -78,9 +77,9 @@ public class UserDataService {
 
         return null;
     }
-    public List<UserData> getUsers()
+    public List<UserData> getUsersData()
     {
-            List <UserData> userData = userDataRepository.findAll();
+            List <UserData> userData = userDataRepository.findByActivityStatus("Active");
             return userData;
     }
 
@@ -95,8 +94,8 @@ public class UserDataService {
             userData.setName(userDataDTO.getName());
             userData.setEmail1(userDataDTO.getEmail1());
             userData.setEmail2(userDataDTO.getEmail2());
-            userData.setPhone1(userDataDTO.getPhone1());
-            userData.setPhone2(userDataDTO.getPhone2());
+            userData.setPhoneNo1(userDataDTO.getPhoneNo1());
+            userData.setPhoneNo2(userDataDTO.getPhoneNo2());
             userData.setCompany(userDataDTO.getCompany());
             userData.setNationality(userDataDTO.getNationality());
             userData.setCountryOfResidence(userDataDTO.getCountryOfResidence());
@@ -110,8 +109,8 @@ public class UserDataService {
             userData.setoTheGallery(userDataDTO.isoTheGallery());
             userData.setoTheResidence(userDataDTO.isoTheResidence());
             userData.setoCliftonCourt(userDataDTO.isoCliftonCourt());
-            userData.setoCliftonPalace(userDataDTO.isoCliftonPalace());
-            userData.setoKaiVIllas(userDataDTO.isoKaiVIllas());
+            userData.setoCliftonPlace(userDataDTO.isoCliftonPlace());
+            userData.setoKaiVillas(userDataDTO.isoKaiVillas());
             userData.setoAddyVillas(userDataDTO.isoAddyVillas());
             userData.setTotal(userDataDTO.getTotal());
             userData.settEmbassyGardens(userDataDTO.istEmbassyGardens());

@@ -1,14 +1,12 @@
 package com.example.excelProj.Dto;
 
-import java.util.Date;
-
 public class UserDataDTO {
     private Long id;
     private String name;
     private String  email1;
     private String email2;
-    private String phone1;
-    private String phone2;
+    private String phoneNo1;
+    private String phoneNo2;
     private String company;
     private String nationality;
     private String countryOfResidence;
@@ -21,9 +19,9 @@ public class UserDataDTO {
     private boolean oEmbassyGardens;
     private boolean oTheGallery;
     private boolean oTheResidence;
-    private boolean oCliftonPalace;
+    private boolean oCliftonPlace;
     private boolean oCliftonCourt;
-    private boolean oKaiVIllas;
+    private boolean oKaiVillas;
     private boolean oAddyVillas;
     private Long Total;
     private boolean tEmbassyGardens;
@@ -38,13 +36,13 @@ public class UserDataDTO {
     public UserDataDTO() {
     }
 
-    public UserDataDTO(Long id, String name, String email1, String email2, String phone1, String phone2, String company, String nationality, String countryOfResidence, String status1, String status2, String status3, String dateOffc, String firstPointOfContact, String details, boolean oEmbassyGardens, boolean oTheGallery, boolean oTheResidence, boolean oCliftonPalace, boolean oCliftonCourt, boolean oKaiVIllas, boolean oAddyVillas, Long total, boolean tEmbassyGardens, boolean tTheGallery, boolean tTheResidence, boolean tCLiftonPalace, boolean tCliftonCourt, boolean tKaiVillas, boolean tAddyVillas) {
+    public UserDataDTO(Long id, String name, String email1, String email2, String phoneNo1, String phoneNo2, String company, String nationality, String countryOfResidence, String status1, String status2, String status3, String dateOffc, String firstPointOfContact, String details, boolean oEmbassyGardens, boolean oTheGallery, boolean oTheResidence, boolean oCliftonPlace, boolean oCliftonCourt, boolean oKaiVillas, boolean oAddyVillas, Long total, boolean tEmbassyGardens, boolean tTheGallery, boolean tTheResidence, boolean tCLiftonPalace, boolean tCliftonCourt, boolean tKaiVillas, boolean tAddyVillas) {
         this.id = id;
         this.name = name;
         this.email1 = email1;
         this.email2 = email2;
-        this.phone1 = phone1;
-        this.phone2 = phone2;
+        this.phoneNo1 = phoneNo1;
+        this.phoneNo2 = phoneNo2;
         this.company = company;
         this.nationality = nationality;
         this.countryOfResidence = countryOfResidence;
@@ -57,9 +55,9 @@ public class UserDataDTO {
         this.oEmbassyGardens = oEmbassyGardens;
         this.oTheGallery = oTheGallery;
         this.oTheResidence = oTheResidence;
-        this.oCliftonPalace = oCliftonPalace;
+        this.oCliftonPlace = oCliftonPlace;
         this.oCliftonCourt = oCliftonCourt;
-        this.oKaiVIllas = oKaiVIllas;
+        this.oKaiVillas = oKaiVillas;
         this.oAddyVillas = oAddyVillas;
         Total = total;
         this.tEmbassyGardens = tEmbassyGardens;
@@ -103,20 +101,20 @@ public class UserDataDTO {
         this.email2 = email2;
     }
 
-    public String getPhone1() {
-        return phone1;
+    public String getPhoneNo1() {
+        return phoneNo1;
     }
 
-    public void setPhone1(String phone1) {
-        this.phone1 = phone1;
+    public void setPhoneNo1(String phoneNo1) {
+        this.phoneNo1 = phoneNo1;
     }
 
-    public String getPhone2() {
-        return phone2;
+    public String getPhoneNo2() {
+        return phoneNo2;
     }
 
-    public void setPhone2(String phone2) {
-        this.phone2 = phone2;
+    public void setPhoneNo2(String phoneNo2) {
+        this.phoneNo2 = phoneNo2;
     }
 
     public String getCompany() {
@@ -215,12 +213,12 @@ public class UserDataDTO {
         this.oTheResidence = oTheResidence;
     }
 
-    public boolean isoCliftonPalace() {
-        return oCliftonPalace;
+    public boolean isoCliftonPlace() {
+        return oCliftonPlace;
     }
 
-    public void setoCliftonPalace(boolean oCliftonPalace) {
-        this.oCliftonPalace = oCliftonPalace;
+    public void setoCliftonPlace(boolean oCliftonPlace) {
+        this.oCliftonPlace = oCliftonPlace;
     }
 
     public boolean isoCliftonCourt() {
@@ -231,12 +229,12 @@ public class UserDataDTO {
         this.oCliftonCourt = oCliftonCourt;
     }
 
-    public boolean isoKaiVIllas() {
-        return oKaiVIllas;
+    public boolean isoKaiVillas() {
+        return oKaiVillas;
     }
 
-    public void setoKaiVIllas(boolean oKaiVIllas) {
-        this.oKaiVIllas = oKaiVIllas;
+    public void setoKaiVillas(boolean oKaiVillas) {
+        this.oKaiVillas = oKaiVillas;
     }
 
     public boolean isoAddyVillas() {

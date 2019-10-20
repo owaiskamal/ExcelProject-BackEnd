@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface UserDataRepository extends JpaRepository <UserData , Long> {
 
-
+    List<UserData> findByActivityStatus(String activityStatus);
 }

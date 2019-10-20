@@ -3,7 +3,6 @@ package com.example.excelProj.Controller;
 import com.example.excelProj.Dto.UserDataDTO;
 import com.example.excelProj.Model.UserData;
 import com.example.excelProj.Service.UserDataService;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +30,7 @@ public class UserDataController {
     @GetMapping(value ="/")
     public List<UserData> getUsersData()
     {
-        return dataService.getUsers();
+        return dataService.getUsersData();
 
     }
     @PutMapping( value = "/{id}")
