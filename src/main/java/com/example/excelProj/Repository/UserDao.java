@@ -15,4 +15,6 @@ public interface UserDao extends JpaRepository<User, Long> {
     public List<User> findByActive();
 
     public User findByEmailAndActive(String email,Boolean active);
+
+    public User findByEmailAndUserType(String email,String userType);
 }

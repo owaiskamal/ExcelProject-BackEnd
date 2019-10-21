@@ -2,16 +2,21 @@ package com.example.excelProj.Service;
 
 import com.example.excelProj.Dto.UserDataDTO;
 import com.example.excelProj.Model.ActivityLogs;
+import com.example.excelProj.Model.User;
 import com.example.excelProj.Model.UserData;
 import com.example.excelProj.Repository.ActivityLogsRepository;
+import com.example.excelProj.Repository.UserDao;
 import com.example.excelProj.Repository.UserDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-
+import java.text.SimpleDateFormat;
+//import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
+import java.text.DateFormat;
 @Service
 public class UserDataService {
 @Autowired
@@ -21,6 +26,12 @@ public class UserDataService {
     @Autowired
     ActivityLogsRepository activityLogsRepository;
 
+    @Autowired
+    UserDao userDao;
+
+
+
+
     public String saveUserData(UserDataDTO userDataDTO){
 
         UserData userData = new UserData();
@@ -28,14 +39,26 @@ public class UserDataService {
         userData = userDataRepository.save(userData);
 
         //ActivityLogs
+        String shortDate = short_Date(new Date());
+
         ActivityLogs activityLogs = new ActivityLogs();
         populateActivityLogs(userData,activityLogs);
-        activityLogs.setCreatedAt(new Date());
-        activityLogs.setCreatedBy("system");
+
+        activityLogs.setCreatedAt(shortDate);
+        activityLogs.setCreatedBy(username());
+        activityLogs.setUpdatedBy(username());
+        activityLogs.setUpdatedAt(shortDate);
         activityLogsRepository.save(activityLogs);
 
         return "{\"Added successfully\":1}";
 
+    }
+
+    private String short_Date(Date date) {
+        DateFormat getDate = DateFormat.getDateInstance(DateFormat.SHORT);
+        DateFormat getTime = DateFormat.getTimeInstance(DateFormat.SHORT);
+        String formattedDate =  getDate.format(date) +" " + getTime.format(date) ;
+        return  formattedDate;
     }
 
     private void populateActivityLogs(UserData userData, ActivityLogs activityLogs) {
@@ -117,11 +140,62 @@ public class UserDataService {
     {
         Optional<UserData> userData = this.userDataRepository.findById(id);
         if(userData.isPresent()){
+            String createdBy = "";
             UserData data = userData.get();
                 data.setActivityStatus("InActive");
-                userDataRepository.save(data);
+                if(data.getId()!=null){
+                  List<ActivityLogs> activityLogs = this.activityLogsRepository.findByUserDataId(data.getId());
+                    for (ActivityLogs a:activityLogs){
+                        if(a.getCreatedBy()!=null){
+                            createdBy = a.getCreatedBy();
+                            break;
+                        }
+
+                    }
+                }
+                data=userDataRepository.save(data);
+            ActivityLogs activityLogs = new ActivityLogs();
+            activityLogs.setUpdatedAt(short_Date(new Date()));
+            activityLogs.setUpdatedBy(username());
+            activityLogs.setCreatedBy(createdBy);
+            populateActivityLogs(data,activityLogs);
+            activityLogsRepository.save(activityLogs);
+
         }
         return this.getUsersData();
+
+    }
+
+
+    public List<UserData> deleteUserDataIfUserLoggedIn(Long id)
+    {
+        Optional<UserData> userData = this.userDataRepository.findById(id);
+        if(userData.isPresent()){
+            String createdBy = "";
+            UserData data = userData.get();
+            data.setActivityStatus("InActive");
+            if(data.getId()!=null){
+                List<ActivityLogs> activityLogs = this.activityLogsRepository.findByUserDataId(data.getId());
+                for (ActivityLogs a:activityLogs){
+                    if(a.getCreatedBy()!=null){
+                        createdBy = a.getCreatedBy();
+                        break;
+                    }
+
+                }
+            }
+            data=userDataRepository.save(data);
+            ActivityLogs activityLogs = new ActivityLogs();
+            activityLogs.setUpdatedAt(short_Date(new Date()));
+            activityLogs.setUpdatedBy(username());
+            activityLogs.setCreatedBy(createdBy);
+            populateActivityLogs(data,activityLogs);
+            activityLogsRepository.save(activityLogs);
+
+        }
+
+       return  this.getActiveUserData();
+
 
     }
 
@@ -141,18 +215,27 @@ public class UserDataService {
     }
     public List<UserData> getUsersData()
     {
-            List <UserData> userData = userDataRepository.findByActivityStatus("Active");
+            List <UserData> userData = userDataRepository.findAll();
             return userData;
     }
+
+    public List<UserData> getActiveUserData()
+    {
+        List <UserData> userData = userDataRepository.findByActivityStatus("Active");
+        return userData;
+    }
+
 
 
     public String updateUser(Long id , UserDataDTO userDataDTO)
     {
+        String createdBy = "";
        // UserData userData = new UserData();
         Optional<UserData> optionalUserData = this.userDataRepository.findById(id);
         if(optionalUserData.isPresent())
         {
             UserData userData = optionalUserData.get();
+
             userData.setName(userDataDTO.getName());
             userData.setEmail1(userDataDTO.getEmail1());
             userData.setEmail2(userDataDTO.getEmail2());
@@ -183,6 +266,24 @@ public class UserDataService {
             userData.settKaiVillas(userDataDTO.istKaiVillas());
             userData.settAddyVillas(userDataDTO.istAddyVillas());
             userData = userDataRepository.save(userData);
+
+            if(userData.getId()!=null){
+                List<ActivityLogs> activityLogs = this.activityLogsRepository.findByUserDataId(userData.getId());
+                for (ActivityLogs a:activityLogs){
+                    if(a.getCreatedBy()!=null){
+                        createdBy = a.getCreatedBy();
+                        break;
+                    }
+
+                }
+            }
+
+            ActivityLogs activityLogs = new ActivityLogs();
+            activityLogs.setCreatedBy(createdBy);
+            activityLogs.setUpdatedBy(username());
+            activityLogs.setUpdatedAt(short_Date(new Date()));
+            populateActivityLogs(userData,activityLogs);
+            activityLogsRepository.save(activityLogs);
             return "{\"Updated successfully\":1}";
 
         }
@@ -190,6 +291,50 @@ public class UserDataService {
         {
             return "{\"No User with This ID\":0}";
         }
+    }
+
+    public List<ActivityLogs> getActivityLogs(Long id){
+        List<ActivityLogs> activityLogs = activityLogsRepository.findByUserDataId(id);
+        return activityLogs;
+    }
+
+    public List<UserData> reactiveUser(Long id)
+    {
+        Optional<UserData> userData = this.userDataRepository.findById(id);
+        if(userData.isPresent()){
+            String createdBy = "";
+            UserData data = userData.get();
+            data.setActivityStatus("Active");
+            if(data.getId()!=null){
+                List<ActivityLogs> activityLogs = this.activityLogsRepository.findByUserDataId(data.getId());
+                for (ActivityLogs a:activityLogs){
+                    if(a.getCreatedBy()!=null){
+                        createdBy = a.getCreatedBy();
+                        break;
+                    }
+
+                }
+            }
+            data=userDataRepository.save(data);
+            ActivityLogs activityLogs = new ActivityLogs();
+            activityLogs.setUpdatedAt(short_Date(new Date()));
+            activityLogs.setUpdatedBy(username());
+            activityLogs.setCreatedBy(createdBy);
+            populateActivityLogs(data,activityLogs);
+            activityLogsRepository.save(activityLogs);
+
+        }
+        return this.getUsersData();
+
+    }
+    public String username()
+    {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        String username = userDetails.getUsername();
+        User user = userDao.findByEmail(username);
+        return  user.getName();
+
     }
 
 
