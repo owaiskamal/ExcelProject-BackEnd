@@ -1,7 +1,7 @@
 package com.example.excelProj.Config;
 
 import com.example.excelProj.Model.User;
-import com.example.excelProj.Repository.UserDao;
+import com.example.excelProj.Repository.UserDaoRepository;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private UserDetailsService userDetailsService;
     
     @Autowired
-    private UserDao userRepo;
+    private UserDaoRepository userRepo;
     
     @Autowired
     private JwtTokenUtil jwtTokenUtil;

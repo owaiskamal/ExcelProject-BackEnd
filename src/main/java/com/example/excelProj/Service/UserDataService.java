@@ -5,13 +5,12 @@ import com.example.excelProj.Model.ActivityLogs;
 import com.example.excelProj.Model.User;
 import com.example.excelProj.Model.UserData;
 import com.example.excelProj.Repository.ActivityLogsRepository;
-import com.example.excelProj.Repository.UserDao;
+import com.example.excelProj.Repository.UserDaoRepository;
 import com.example.excelProj.Repository.UserDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import java.text.SimpleDateFormat;
 //import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +26,7 @@ public class UserDataService {
     ActivityLogsRepository activityLogsRepository;
 
     @Autowired
-    UserDao userDao;
+    UserDaoRepository userDaoRepository;
 
 
 
@@ -332,7 +331,7 @@ public class UserDataService {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
         String username = userDetails.getUsername();
-        User user = userDao.findByEmail(username);
+        User user = userDaoRepository.findByEmail(username);
         return  user.getName();
 
     }

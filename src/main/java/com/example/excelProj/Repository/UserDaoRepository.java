@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserDao extends JpaRepository<User, Long> {
+public interface UserDaoRepository extends JpaRepository<User, Long> {
 
     User findByEmail(String username);
     @Query(value = "select * from user where active=true",nativeQuery = true)
